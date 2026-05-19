@@ -11,7 +11,7 @@
     ".": {
       "import": "./lib/module/index.js",
       "require": "./lib/commonjs/index.js",
-      "types": "./lib/typescript/src/index.d.ts"
+      "types": "./lib/typescript/index.d.ts"
     }
   },
   "files": [
