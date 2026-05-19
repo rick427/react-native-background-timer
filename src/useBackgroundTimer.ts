@@ -55,8 +55,7 @@ export function useBackgroundTimer(
   // Stable timer ID — computed once per mount
   const timerId = useMemo(
     () => externalId ?? generateHookId(),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [externalId]
+    [externalId] // intentionally only re-runs when the external ID changes
   );
 
   // ── Stable callback refs ────────────────────────────────────────────────
@@ -141,8 +140,7 @@ export function useBackgroundTimer(
       unsubscribe();
       handle.destroy();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [timerId]);
+  }, [timerId]); // intentionally only re-runs when timerId changes (stable per mount)
 
   // ── Stable action callbacks ─────────────────────────────────────────────
   const start = useCallback(() => {

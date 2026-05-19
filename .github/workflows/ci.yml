@@ -212,10 +212,12 @@ jobs:
 
       - name: Validate UIBackgroundTask is used
         run: |
-          if grep -q "beginBackgroundTask" ios/RNBackgroundTimer.swift; then
-            echo "✅ UIBackgroundTask (beginBackgroundTask) used in RNBackgroundTimer.swift"
+          # beginBackgroundTask is called inside BGTaskManager (the dedicated task manager),
+          # not in RNBackgroundTimer directly which delegates to BGTaskManager.
+          if grep -q "beginBackgroundTask" ios/BGTaskManager.swift; then
+            echo "✅ UIBackgroundTask (beginBackgroundTask) used in BGTaskManager.swift"
           else
-            echo "❌ beginBackgroundTask not found in RNBackgroundTimer.swift"
+            echo "❌ beginBackgroundTask not found in BGTaskManager.swift"
             exit 1
           fi
 

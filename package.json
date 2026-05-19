@@ -4,7 +4,7 @@
   "description": "A modern, reliable React Native background timer with full New Architecture support. Works on iOS and Android even when the app is backgrounded or the screen is locked.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
-  "types": "lib/typescript/src/index.d.ts",
+  "types": "lib/typescript/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
   "exports": {
