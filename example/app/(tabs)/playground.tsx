@@ -24,7 +24,7 @@ import {
   useBackgroundTimer,
   type TimerHandle,
   type LegacyTimeoutId,
-} from '@rick427/background-timer';
+} from '@rick427/react-native-bg-timer';
 import { StatusBadge } from '../../src/components/StatusBadge';
 import { formatMs } from '../../src/components/TimerRing';
 import { COLORS, RADIUS } from '../../src/theme';

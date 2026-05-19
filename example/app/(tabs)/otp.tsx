@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { useBackgroundTimer } from '@rick427/background-timer';
+import { useBackgroundTimer } from '@rick427/react-native-bg-timer';
 import { TimerRing, formatMs } from '../../src/components/TimerRing';
 import { StatusBadge } from '../../src/components/StatusBadge';
 import { COLORS, RADIUS } from '../../src/theme';

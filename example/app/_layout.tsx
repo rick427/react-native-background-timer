@@ -1,7 +1,7 @@
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
-import { BackgroundTimer } from '@rick427/background-timer';
+import { BackgroundTimer } from '@rick427/react-native-bg-timer';
 
 export default function RootLayout() {
   useEffect(() => {

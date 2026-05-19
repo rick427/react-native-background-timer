@@ -26,7 +26,7 @@
     "plugins": [
       "expo-router",
       [
-        "@rick427/background-timer",
+        "@rick427/react-native-bg-timer",
         {
           "taskIdentifiers": [
             "com.rick427.bgtimer.example.session-timeout",

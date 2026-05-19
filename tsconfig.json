@@ -2,12 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@rick427/background-timer": ["./src/index"]
+      "@rick427/react-native-bg-timer": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "esModuleInterop": true,
-    "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["ESNext"],

@@ -1,7 +1,7 @@
 /**
  * NativeBackgroundTimer.ts
  *
- * Turbo Module specification for @rick427/background-timer.
+ * Turbo Module specification for @rick427/react-native-bg-timer.
  * React Native Codegen reads this file to auto-generate the C++ JSI
  * bindings and the Java/Swift native stubs.
  *

@@ -1,5 +1,5 @@
 /**
- * @rick427/background-timer
+ * @rick427/react-native-bg-timer
  *
  * A modern, reliable React Native background timer.
  * Supports iOS 13+ (BGTaskScheduler) and Android 8+ (Foreground Service + AlarmManager).

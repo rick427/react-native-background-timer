@@ -1,12 +1,12 @@
-# @rick427/background-timer
+# @rick427/react-native-bg-timer
 
 A modern, reliable React Native background timer that keeps running even when your app is backgrounded or the screen is locked.
 
 Built for **React Native New Architecture** (Turbo Modules + JSI) with **Kotlin** on Android and **Swift** on iOS.
 
 [![CI](https://github.com/rick427/react-native-background-timer/actions/workflows/ci.yml/badge.svg)](https://github.com/rick427/react-native-background-timer/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/@rick427/background-timer)](https://www.npmjs.com/package/@rick427/background-timer)
-[![license](https://img.shields.io/npm/l/@rick427/background-timer)](LICENSE)
+[![npm](https://img.shields.io/npm/v/@rick427/react-native-bg-timer)](https://www.npmjs.com/package/@rick427/react-native-bg-timer)
+[![license](https://img.shields.io/npm/l/@rick427/react-native-bg-timer)](LICENSE)
 [![platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20Android-lightgrey)](https://github.com/rick427/react-native-background-timer)
 
 ---
@@ -43,9 +43,9 @@ The most popular background timer package ([react-native-background-timer](https
 ## Installation
 
 ```sh
-npm install @rick427/background-timer
+npm install @rick427/react-native-bg-timer
 # or
-yarn add @rick427/background-timer
+yarn add @rick427/react-native-bg-timer
 ```
 
 ### Expo (managed workflow)
@@ -56,7 +56,7 @@ Add the config plugin to your `app.json` / `app.config.js`:
 {
   "plugins": [
     [
-      "@rick427/background-timer",
+      "@rick427/react-native-bg-timer",
       {
         "taskIdentifiers": [
           "com.yourapp.session-timeout",
@@ -102,7 +102,7 @@ expo run:android
 ## Quick start
 
 ```tsx
-import { useBackgroundTimer } from '@rick427/background-timer';
+import { useBackgroundTimer } from '@rick427/react-native-bg-timer';
 
 function SessionScreen() {
   const { start, stop, pause, resume, remaining, status } = useBackgroundTimer({
@@ -182,7 +182,7 @@ interface UseBackgroundTimerOptions {
 For cases where you need to manage timers outside of React components.
 
 ```ts
-import { BackgroundTimer } from '@rick427/background-timer';
+import { BackgroundTimer } from '@rick427/react-native-bg-timer';
 
 const timer = BackgroundTimer.create({
   id: 'my-timer',
@@ -207,7 +207,7 @@ timer.destroy();   // release all native resources
 Drop-in replacements for the standard JS timers. Use these if you're migrating from `react-native-background-timer`.
 
 ```ts
-import { BackgroundTimer } from '@rick427/background-timer';
+import { BackgroundTimer } from '@rick427/react-native-bg-timer';
 
 // One-shot
 const timeoutId = BackgroundTimer.setTimeout(() => {
@@ -270,7 +270,7 @@ useBackgroundTimer({
 Android 12 (API 31) introduced `SCHEDULE_EXACT_ALARM` — users must grant it manually. Without it, the library falls back to inexact alarms (which can drift by minutes).
 
 ```ts
-import { BackgroundTimer } from '@rick427/background-timer';
+import { BackgroundTimer } from '@rick427/react-native-bg-timer';
 
 // Check before starting a time-sensitive timer
 if (!BackgroundTimer.canScheduleExactAlarms()) {

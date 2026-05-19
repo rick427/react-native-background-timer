@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS, RADIUS } from '../theme';
-import type { TimerStatus } from '@rick427/background-timer';
+import type { TimerStatus } from '@rick427/react-native-bg-timer';
 
 interface Props {
   status: TimerStatus;

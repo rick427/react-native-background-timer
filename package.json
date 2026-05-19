@@ -1,5 +1,5 @@
 {
-  "name": "@rick427/background-timer",
+  "name": "@rick427/react-native-bg-timer",
   "version": "0.1.0",
   "description": "A modern, reliable React Native background timer with full New Architecture support. Works on iOS and Android even when the app is backgrounded or the screen is locked.",
   "main": "lib/commonjs/index",
@@ -31,10 +31,10 @@
   "scripts": {
     "build": "bob build",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "clean": "del-cli android/build lib",
     "prepare": "bob build",
-    "example": "yarn workspace @rick427/background-timer-example"
+    "example": "yarn workspace @rick427/react-native-bg-timer-example"
   },
   "keywords": [
     "react-native",
@@ -67,10 +67,11 @@
   },
   "devDependencies": {
     "@react-native/babel-preset": "^0.76.0",
-    "@react-native/eslint-config": "^0.76.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
     "@types/react": "^18.2.0",
     "del-cli": "^5.1.0",
-    "eslint": "^8.51.0",
+    "eslint": "^8.57.0",
     "react": "18.3.1",
     "react-native": "0.76.5",
     "react-native-builder-bob": "^0.30.0",

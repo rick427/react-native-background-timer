@@ -1,5 +1,5 @@
 {
-  "name": "@rick427/background-timer-example",
+  "name": "@rick427/react-native-bg-timer-example",
   "version": "0.0.1",
   "private": true,
   "main": "expo-router/entry",
@@ -12,7 +12,7 @@
   "dependencies": {
     "@expo/vector-icons": "^14.0.0",
     "@react-navigation/bottom-tabs": "^6.5.0",
-    "@rick427/background-timer": "*",
+    "@rick427/react-native-bg-timer": "*",
     "expo": "~52.0.0",
     "expo-constants": "~17.0.0",
     "expo-router": "~4.0.0",

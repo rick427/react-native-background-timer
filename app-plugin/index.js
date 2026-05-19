@@ -1,5 +1,5 @@
 /**
- * Expo Config Plugin for @rick427/background-timer
+ * Expo Config Plugin for @rick427/react-native-bg-timer
  *
  * Automatically configures the native projects so that users don't have
  * to touch AndroidManifest.xml or Info.plist manually.
@@ -16,7 +16,7 @@
  * Usage in app.config.js / app.json:
  *   {
  *     "plugins": [
- *       ["@rick427/background-timer", {
+ *       ["@rick427/react-native-bg-timer", {
  *         "taskIdentifiers": ["com.myapp.session-timeout"],
  *         "androidNotification": {
  *           "icon": "ic_timer",
@@ -85,6 +85,6 @@ function withBackgroundTimer(config, options = {}) {
 
 module.exports = createRunOncePlugin(
   withBackgroundTimer,
-  '@rick427/background-timer',
+  '@rick427/react-native-bg-timer',
   '1.0.0'
 );

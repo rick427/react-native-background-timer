@@ -1,7 +1,7 @@
 /**
  * BackgroundTimer.ts
  *
- * The main imperative API for @rick427/background-timer.
+ * The main imperative API for @rick427/react-native-bg-timer.
  *
  * Three usage styles:
  *
