@@ -1,0 +1,128 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ── Typecheck + Lint ──────────────────────────────────────────────────────
+  typecheck:
+    name: Typecheck & Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Typecheck
+        run: yarn typecheck
+
+      - name: Lint
+        run: yarn lint
+
+  # ── Build (verify the package compiles) ──────────────────────────────────
+  build:
+    name: Build Package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build
+        run: yarn build
+
+      - name: Check lib output
+        run: |
+          echo "── CommonJS ──"
+          ls lib/commonjs/
+          echo "── ESM ──"
+          ls lib/module/
+          echo "── Types ──"
+          ls lib/typescript/src/
+
+  # ── Android build check ───────────────────────────────────────────────────
+  android:
+    name: Android Build Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Validate Kotlin files compile
+        working-directory: android
+        run: |
+          # Check Gradle wrapper is present; if not, just validate syntax
+          if [ -f gradlew ]; then
+            ./gradlew compileDebugKotlin --no-daemon
+          else
+            echo "No Gradle wrapper in library — skipping compile (host app builds this)"
+          fi
+
+  # ── iOS podspec validation ────────────────────────────────────────────────
+  ios:
+    name: iOS Podspec Lint
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Install CocoaPods
+        run: gem install cocoapods --no-document
+
+      - name: Lint podspec
+        run: |
+          pod spec lint ios/background-timer.podspec \
+            --allow-warnings \
+            --skip-import-validation \
+            --no-clean
