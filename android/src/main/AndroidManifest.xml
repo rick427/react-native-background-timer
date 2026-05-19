@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!-- ── Permissions ─────────────────────────────────────────────────────── -->
+
+  <!--
+    Required for foreground services (Android 9+).
+    Declared automatically by this library.
+  -->
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+  <!--
+    Required for timers to survive screen lock (Android 14+: type declaration).
+  -->
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+
+  <!--
+    Keeps the CPU awake between alarm fire and service start.
+    Released by the service immediately after processing.
+  -->
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+  <!--
+    Android 12+ exact alarm permission (SCHEDULE_EXACT_ALARM).
+    NOTE: This permission requires the user to grant it manually in
+    Settings > Apps > Special app access > Alarms & reminders.
+    The app must call BackgroundTimer.requestExactAlarmPermission() to guide
+    the user there. Without this, we fall back to inexact alarms.
+  -->
+  <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
+  <!--
+    Restores persisted timers after a device reboot.
+    Required for the persistence feature.
+  -->
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+  <!-- ── Components ─────────────────────────────────────────────────────── -->
+
+  <application>
+
+    <!--
+      Foreground service that keeps timers alive.
+      foregroundServiceType="specialUse" is required on Android 14+.
+      stopWithTask=false: service keeps running even if user swipes away the app.
+    -->
+    <service
+      android:name=".BackgroundTimerService"
+      android:exported="false"
+      android:foregroundServiceType="specialUse"
+      android:stopWithTask="false">
+
+      <!-- Required for Android 14+ specialUse foreground service type -->
+      <property
+        android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+        android:value="background_timer" />
+
+    </service>
+
+    <!--
+      Catches AlarmManager broadcasts.
+      exported=false: only our own PendingIntents can trigger this.
+    -->
+    <receiver
+      android:name=".AlarmReceiver"
+      android:exported="false">
+      <intent-filter>
+        <action android:name="com.rick427.backgroundtimer.ALARM" />
+      </intent-filter>
+    </receiver>
+
+    <!--
+      Restores timers after device reboot.
+    -->
+    <receiver
+      android:name=".BootReceiver"
+      android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+        <!-- HTC / OnePlus fast-boot support -->
+        <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+      </intent-filter>
+    </receiver>
+
+  </application>
+
+</manifest>

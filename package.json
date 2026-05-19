@@ -1,0 +1,96 @@
+{
+  "name": "@rick427/background-timer",
+  "version": "0.1.0",
+  "description": "A modern, reliable React Native background timer with full New Architecture support. Works on iOS and Android even when the app is backgrounded or the screen is locked.",
+  "main": "lib/commonjs/index",
+  "module": "lib/module/index",
+  "types": "lib/typescript/src/index.d.ts",
+  "react-native": "src/index",
+  "source": "src/index",
+  "exports": {
+    ".": {
+      "import": "./lib/module/index.js",
+      "require": "./lib/commonjs/index.js",
+      "types": "./lib/typescript/src/index.d.ts"
+    }
+  },
+  "files": [
+    "src",
+    "lib",
+    "android",
+    "ios",
+    "app-plugin",
+    "app.plugin.js",
+    "react-native.config.js",
+    "!android/build",
+    "!ios/build",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__"
+  ],
+  "scripts": {
+    "build": "bob build",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "clean": "del-cli android/build lib",
+    "prepare": "bob build",
+    "example": "yarn workspace @rick427/background-timer-example"
+  },
+  "keywords": [
+    "react-native",
+    "background-timer",
+    "background",
+    "timer",
+    "foreground-service",
+    "ios",
+    "android",
+    "turbo-module",
+    "new-architecture"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rick427/react-native-background-timer"
+  },
+  "author": "rick427",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rick427/react-native-background-timer/issues"
+  },
+  "homepage": "https://github.com/rick427/react-native-background-timer#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "@react-native/babel-preset": "^0.76.0",
+    "@react-native/eslint-config": "^0.76.0",
+    "@types/react": "^18.2.0",
+    "del-cli": "^5.1.0",
+    "eslint": "^8.51.0",
+    "react": "18.3.1",
+    "react-native": "0.76.5",
+    "react-native-builder-bob": "^0.30.0",
+    "typescript": "^5.3.0"
+  },
+  "codegenConfig": {
+    "name": "RNBackgroundTimerSpec",
+    "type": "modules",
+    "jsSrcsDir": "src",
+    "android": {
+      "javaPackageName": "com.rick427.backgroundtimer"
+    }
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      ["commonjs", { "esmodules": true }],
+      ["module", { "esmodules": true }],
+      ["typescript"]
+    ]
+  }
+}

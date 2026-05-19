@@ -1,0 +1,57 @@
+buildscript {
+  repositories {
+    google()
+    mavenCentral()
+  }
+  dependencies {
+    classpath "com.android.tools.build:gradle:8.3.0"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22"
+  }
+}
+
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+apply plugin: "com.facebook.react"
+
+// ── Namespace (AGP 8+ requirement — no longer read from AndroidManifest) ─────
+android {
+  namespace "com.rick427.backgroundtimer"
+  compileSdk 34
+
+  defaultConfig {
+    minSdk 26          // Android 8.0 (Foreground Services, notification channels)
+    targetSdk 34
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+
+  kotlinOptions {
+    jvmTarget = "17"
+  }
+
+  buildFeatures {
+    buildConfig false
+  }
+}
+
+repositories {
+  mavenCentral()
+  google()
+}
+
+dependencies {
+  // React Native — provided by the host app, not bundled
+  implementation "com.facebook.react:react-android"
+
+  // Kotlin standard library
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.22"
+
+  // AndroidX Core (NotificationCompat)
+  implementation "androidx.core:core-ktx:1.12.0"
+
+  // WorkManager — optional, used for deferred restarts after boot
+  implementation "androidx.work:work-runtime-ktx:2.9.0"
+}
